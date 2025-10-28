@@ -5,6 +5,7 @@ function Landing() {
   return (
     <section className="landing-container">
       {/* Decorative Circle */}
+      
       <div className="circle-deco"></div>
 
       <div className="landing-content">
