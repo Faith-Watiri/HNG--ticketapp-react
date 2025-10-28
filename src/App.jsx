@@ -1,38 +1,53 @@
-import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
-// import Navbar from "./components/Navbar";
-// import Footer from "./components/Footer";
-import Landing from "./Pages/Landing";
-import Login from "./Pages/Auth/Login";
-import Signup from "./Pages/Auth/Signup";
-import Dashboard from "./Pages/Dashboard";
-import Tickets from "./Pages/Tickets";
-import { AuthProvider, useAuth } from "./context/AuthContext";
-// import  "./styles/App.css";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { Toast, useToast } from './components/Toast';
+import { LandingPage } from './pages/LandingPage';
+import { LoginPage } from './pages/LoginPage';
+import { SignupPage } from './pages/SignupPage';
+import { DashboardPage } from './pages/DashboardPage';
+import { TicketsPage } from './pages/TicketsPage';
 
-function PrivateRoute({ children }) {
-  const { user } = useAuth();
-  return user ? children : <Navigate to="/auth/login" replace />;
+function AppContent() {
+  const { toasts, showToast } = useToast();
+
+  return (
+    <>
+      <Toast toasts={toasts} />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/auth/login" element={<LoginPage showToast={showToast} />} />
+        <Route path="/auth/signup" element={<SignupPage showToast={showToast} />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/tickets"
+          element={
+            <ProtectedRoute>
+              <TicketsPage showToast={showToast} />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
+  );
 }
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        {/* <Navbar /> */}
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-          <Route path="/tickets" element={<PrivateRoute><Tickets /></PrivateRoute>} />
-        </Routes>
-        {/* <Footer /> */}
-        <Toaster position="top-right" />
-      </Router>
-    </AuthProvider>
+    <Router>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </Router>
   );
 }
 
 export default App;
-

@@ -1,16 +1,132 @@
-# React + Vite
+# TicketFlow - React Version
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, minimalistic ticket management application built with React 18, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Landing Page with wavy SVG background and decorative circles
+- Secure authentication (Login/Signup) with validation
+- Dashboard with visual statistics
+- Full CRUD operations for ticket management
+- Toast notifications for user feedback
+- Responsive design (mobile, tablet, desktop)
+- Modern UI with Inter font
 
-## React Compiler
+## 🛠️ Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 18
+- Vite
+- React Router DOM v6
+- Tailwind CSS v3
+- Google Fonts (Inter)
 
-## Expanding the ESLint configuration
+## 📋 Prerequisites
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js v16+
+- npm or yarn
+
+## 🔧 Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## 🌐 Access
+
+Development: `http://localhost:5173`
+
+## 🔐 Test Credentials
+
+Use any email and password (6+ characters):
+- Email: `demo@ticketflow.com`
+- Password: `password123`
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── Footer.jsx
+│   ├── ProtectedRoute.jsx
+│   └── Toast.jsx
+├── contexts/
+│   └── AuthContext.jsx
+├── pages/
+│   ├── LandingPage.jsx
+│   ├── LoginPage.jsx
+│   ├── SignupPage.jsx
+│   ├── DashboardPage.jsx
+│   └── TicketsPage.jsx
+├── App.jsx
+├── main.jsx
+└── index.css
+```
+
+## 🎨 Design System
+
+### Colors
+- Primary: Indigo (#4F46E5)
+- Success/Open: Green (#10B981)
+- Warning/In Progress: Amber (#F59E0B)
+- Neutral/Closed: Gray (#6B7280)
+
+### Typography
+- Font Family: Inter
+- Weights: 300, 400, 500, 600, 700
+
+### Layout
+- Max Width: 1440px (centered)
+- Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
+
+## 🎯 Key Features
+
+### Authentication
+- Context API for global auth state
+- localStorage for session persistence
+- Protected routes with automatic redirection
+- Form validation with inline errors
+
+### Ticket Management
+- Create tickets with modal form
+- View tickets in grid layout
+- Edit tickets with pre-filled forms
+- Delete with confirmation modal
+- Real-time validation
+- Status badges (open/in_progress/closed)
+- Priority indicators (low/medium/high)
+
+### Validation Rules
+- Title: Required, max 100 characters
+- Description: Optional, max 500 characters
+- Status: Required, must be open/in_progress/closed
+- Priority: Optional, low/medium/high
+
+## 📦 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## ♿ Accessibility
+
+- Semantic HTML
+- ARIA labels
+- Keyboard navigation
+- Focus indicators
+- Screen reader support
+
+## 🐛 Known Issues
+
+None currently
+
+## 📄 License
+
+MIT
